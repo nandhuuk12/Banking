@@ -7,10 +7,14 @@ This folder contains the compiled JAR distributions for both Banking Core and Ne
 ```
 dist/
 ├── banking-core/               # Banking Core standalone application
-│   └── banking-core-1.0.0-boot.jar (45MB)
+│   ├── banking-core-1.0.0-boot.jar (45MB)
+│   └── banking-core-1.0.0.jar (74KB)
 ├── netbanking-app/             # NetBanking web application
-│   └── netbanking-app-1.0.0.jar (61MB)
-├── lib/                        # Library JARs
+│   ├── netbanking-app-1.0.0.jar (61MB)
+│   └── lib/                    # Embedded dependencies
+│       ├── banking-core-1.0.0.jar
+│       └── banking-core-1.0.0-sources.jar
+├── lib/                        # Shared library JARs
 │   ├── banking-core-1.0.0.jar     # Core library (74KB)
 │   └── banking-core-1.0.0-sources.jar # Source code
 ├── scripts/                    # Startup scripts
