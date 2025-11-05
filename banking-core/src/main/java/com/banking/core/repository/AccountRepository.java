@@ -106,8 +106,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     /**
      * Find dormant accounts (accounts with no transactions in specified days)
      */
-    @Query("SELECT a FROM Account a WHERE a.status = 'ACTIVE' AND a.id NOT IN " +
-           "(SELECT DISTINCT t.fromAccount.id FROM Transaction t WHERE t.timestamp >= CURRENT_DATE - :days " +
-           "UNION SELECT DISTINCT t.toAccount.id FROM Transaction t WHERE t.timestamp >= CURRENT_DATE - :days)")
+    @Query(value = "SELECT a.* FROM accounts a WHERE a.status = 'ACTIVE' AND a.id NOT IN " +
+           "(SELECT DISTINCT COALESCE(t.from_account_id, 0) FROM transactions t WHERE t.timestamp >= DATE_SUB(NOW(), INTERVAL :days DAY) " +
+           "UNION SELECT DISTINCT COALESCE(t.to_account_id, 0) FROM transactions t WHERE t.timestamp >= DATE_SUB(NOW(), INTERVAL :days DAY))",
+           nativeQuery = true)
     List<Account> findDormantAccounts(@Param("days") int days);
 }
