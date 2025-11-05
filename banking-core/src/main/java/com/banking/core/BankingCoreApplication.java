@@ -2,7 +2,7 @@ package com.banking.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+// import org.springframework.data.jpa.repository.config.EnableJpaAuditing; // Should be configured by consuming application
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * or as a library dependency in other applications.
  */
 @SpringBootApplication
-@EnableJpaAuditing
 @EnableTransactionManagement
 public class BankingCoreApplication {
+    // Note: @EnableJpaAuditing should be configured by the consuming application
 
     public static void main(String[] args) {
         SpringApplication.run(BankingCoreApplication.class, args);

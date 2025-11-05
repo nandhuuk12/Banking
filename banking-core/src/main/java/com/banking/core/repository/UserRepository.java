@@ -74,6 +74,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     /**
      * Find users created in the last N days
      */
-    @Query("SELECT u FROM User u WHERE u.createdAt >= CURRENT_DATE - :days")
+    @Query("SELECT u FROM User u WHERE u.createdAt >= CURRENT_TIMESTAMP - :days DAY")
     List<User> findRecentUsers(@Param("days") int days);
 }
